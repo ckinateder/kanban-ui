@@ -5,7 +5,6 @@ import { Link } from "react-router-dom";
 export default class TasksList extends Component {
   constructor(props) {
     super(props);
-    this.onChangeSearchTitle = this.onChangeSearchTitle.bind(this);
 
     this.retrieveToDo = this.retrieveToDo.bind(this);
     this.retrieveInProgress = this.retrieveInProgress.bind(this);
@@ -14,7 +13,6 @@ export default class TasksList extends Component {
     this.refreshList = this.refreshList.bind(this);
     this.setActiveTask = this.setActiveTask.bind(this);
     this.removeAllTasks = this.removeAllTasks.bind(this);
-    this.searchTitle = this.searchTitle.bind(this);
 
     this.state = {
       tasks_todo: [],
@@ -22,7 +20,6 @@ export default class TasksList extends Component {
       tasks_done: [],
       currentTask: null,
       currentIndex: -1,
-      searchTitle: ""
     };
   }
 
@@ -30,14 +27,6 @@ export default class TasksList extends Component {
     this.retrieveToDo();
     this.retrieveInProgress();
     this.retrieveDone();
-  }
-
-  onChangeSearchTitle(e) {
-    const searchTitle = e.target.value;
-
-    this.setState({
-      searchTitle: searchTitle
-    });
   }
 
   retrieveToDo() {
@@ -105,44 +94,12 @@ export default class TasksList extends Component {
       });
   }
 
-  searchTitle() {
-    TaskDataService.findByTitle(this.state.searchTitle)
-      .then(response => {
-        this.setState({
-          tasks: response.data
-        });
-        console.log(response.data);
-      })
-      .catch(e => {
-        console.log(e);
-      });
-  }
-
   render() {
-    const { searchTitle, tasks_todo, tasks_inprogress, tasks_done, currentTask, currentIndex} = this.state;
+    const { tasks_todo, tasks_inprogress, tasks_done, currentTask, currentIndex} = this.state;
 
     return (
       <div className="list row">
-        <div className="col-md-8">
-          <div className="input-group mb-3">
-            <input
-              type="text"
-              className="form-control"
-              placeholder="Search by title"
-              value={searchTitle}
-              onChange={this.onChangeSearchTitle}
-            />
-            <div className="input-group-append">
-              <button
-                className="btn btn-outline-secondary"
-                type="button"
-                onClick={this.searchTitle}
-              >
-                Search
-              </button>
-            </div>
-          </div>
-        </div>
+          
         <div className="col-md-6">
           <h4>To Do</h4>
 
@@ -221,7 +178,7 @@ export default class TasksList extends Component {
 
               <div>
                 <label>
-                  <strong>Assign to:</strong>
+                  <strong>Assigned to:</strong>
                 </label>{" "}
                 {currentTask.user}
               </div>
