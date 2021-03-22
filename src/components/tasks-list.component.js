@@ -22,6 +22,7 @@ export default class TasksList extends Component {
       tasks_done: [],
       currentTask: null,
       currentIndex: -1,
+      currentType: "",
       searchTitle: ""
     };
   }
@@ -83,14 +84,16 @@ export default class TasksList extends Component {
     this.retrieveToDo();
     this.setState({
       currentTask: null,
-      currentIndex: -1
+      currentIndex: -1,
+      currentType: ""
     });
   }
 
-  setActiveTask(task, index) {
+  setActiveTask(task, index, type) {
     this.setState({
       currentTask: task,
-      currentIndex: index
+      currentIndex: index,
+      currentType: type,
     });
   }
 
@@ -119,7 +122,7 @@ export default class TasksList extends Component {
   }
 
   render() {
-    const { searchTitle, tasks_todo, tasks_inprogress, tasks_done, currentTask, currentIndex } = this.state;
+    const { searchTitle, tasks_todo, tasks_inprogress, tasks_done, currentTask, currentIndex, currentType } = this.state;
 
     return (
       <div className="list row">
@@ -152,13 +155,14 @@ export default class TasksList extends Component {
                 <li
                   className={
                     "list-group-item " +
-                    (index === currentIndex ? "active" : "")
+                    ((index === currentIndex && task === currentTask)? "active" : "")
                   }
-                  onClick={() => this.setActiveTask(task, index)}
+                  onClick={() => this.setActiveTask(task, index, task.type)}
                   key={index}
                 >
                   {task.title}
                 </li>
+                
               ))}
           </ul>
           <h4>In progress</h4>
@@ -169,9 +173,9 @@ export default class TasksList extends Component {
                 <li
                   className={
                     "list-group-item " +
-                    (index === currentIndex ? "active" : "")
+                    ((index === currentIndex && task === currentTask)? "active" : "")
                   }
-                  onClick={() => this.setActiveTask(task, index)}
+                  onClick={() => this.setActiveTask(task, index, task.type)}
                   key={index}
                 >
                   {task.title}
@@ -187,9 +191,9 @@ export default class TasksList extends Component {
                 <li
                   className={
                     "list-group-item " +
-                    (index === currentIndex ? "active" : "")
+                    ((index === currentIndex && task === currentTask)? "active" : "")
                   }
-                  onClick={() => this.setActiveTask(task, index)}
+                  onClick={() => this.setActiveTask(task, index, task.type)}
                   key={index}
                 >
                   {task.title}
