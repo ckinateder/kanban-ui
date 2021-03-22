@@ -6,14 +6,20 @@ export default class TasksList extends Component {
   constructor(props) {
     super(props);
     this.onChangeSearchTitle = this.onChangeSearchTitle.bind(this);
-    this.retrieveTasks = this.retrieveTasks.bind(this);
+
+    this.retrieveToDo = this.retrieveToDo.bind(this);
+    this.retrieveInProgress = this.retrieveInProgress.bind(this);
+    this.retrieveDone = this.retrieveDone.bind(this);
+
     this.refreshList = this.refreshList.bind(this);
     this.setActiveTask = this.setActiveTask.bind(this);
     this.removeAllTasks = this.removeAllTasks.bind(this);
     this.searchTitle = this.searchTitle.bind(this);
 
     this.state = {
-      tasks: [],
+      tasks_todo: [],
+      tasks_inprogress: [],
+      tasks_done: [],
       currentTask: null,
       currentIndex: -1,
       searchTitle: ""
@@ -21,7 +27,9 @@ export default class TasksList extends Component {
   }
 
   componentDidMount() {
-    this.retrieveTasks();
+    this.retrieveToDo();
+    this.retrieveInProgress();
+    this.retrieveDone();
   }
 
   onChangeSearchTitle(e) {
@@ -32,11 +40,37 @@ export default class TasksList extends Component {
     });
   }
 
-  retrieveTasks() {
-    TaskDataService.getAll()
+  retrieveToDo() {
+    TaskDataService.getToDo()
       .then(response => {
         this.setState({
-          tasks: response.data
+            tasks_todo: response.data
+        });
+        console.log(response.data);
+      })
+      .catch(e => {
+        console.log(e);
+      });
+  }
+
+  retrieveInProgress() {
+    TaskDataService.getInProgress()
+      .then(response => {
+        this.setState({
+            tasks_inprogress: response.data
+        });
+        console.log(response.data);
+      })
+      .catch(e => {
+        console.log(e);
+      });
+  }
+
+  retrieveDone() {
+    TaskDataService.getDone()
+      .then(response => {
+        this.setState({
+            tasks_done: response.data
         });
         console.log(response.data);
       })
@@ -46,7 +80,7 @@ export default class TasksList extends Component {
   }
 
   refreshList() {
-    this.retrieveTasks();
+    this.retrieveToDo();
     this.setState({
       currentTask: null,
       currentIndex: -1
@@ -85,7 +119,7 @@ export default class TasksList extends Component {
   }
 
   render() {
-    const { searchTitle, tasks, currentTask, currentIndex } = this.state;
+    const { searchTitle, tasks_todo, tasks_inprogress, tasks_done, currentTask, currentIndex } = this.state;
 
     return (
       <div className="list row">
@@ -110,11 +144,46 @@ export default class TasksList extends Component {
           </div>
         </div>
         <div className="col-md-6">
-          <h4>Tasks List</h4>
+          <h4>To Do</h4>
 
           <ul className="list-group">
-            {tasks &&
-              tasks.map((task, index) => (
+            {tasks_todo &&
+              tasks_todo.map((task, index) => (
+                <li
+                  className={
+                    "list-group-item " +
+                    (index === currentIndex ? "active" : "")
+                  }
+                  onClick={() => this.setActiveTask(task, index)}
+                  key={index}
+                >
+                  {task.title}
+                </li>
+              ))}
+          </ul>
+          <h4>In progress</h4>
+
+          <ul className="list-group">
+            {tasks_inprogress &&
+              tasks_inprogress.map((task, index) => (
+                <li
+                  className={
+                    "list-group-item " +
+                    (index === currentIndex ? "active" : "")
+                  }
+                  onClick={() => this.setActiveTask(task, index)}
+                  key={index}
+                >
+                  {task.title}
+                </li>
+              ))}
+          </ul>
+          
+          <h4>Done</h4>
+
+          <ul className="list-group">
+            {tasks_done &&
+              tasks_done.map((task, index) => (
                 <li
                   className={
                     "list-group-item " +
@@ -128,12 +197,14 @@ export default class TasksList extends Component {
               ))}
           </ul>
 
-          <button
-            className="m-3 btn btn-sm btn-danger"
-            onClick={this.removeAllTasks}
+                
+          <Link
+            className="m-3 btn btn-sm btn-primary"
+            to={"/add"}
           >
-            Remove All
-          </button>
+              Add
+              </Link>
+          
         </div>
         <div className="col-md-6">
           {currentTask ? (

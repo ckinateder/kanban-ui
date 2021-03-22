@@ -114,29 +114,6 @@ export default class Task extends Component {
         console.log(e);
       });
   }
-/** 
-  updatePublished(status) {
-    var data = {
-      id: this.state.currentTask.id,
-      title: this.state.currentTask.title,
-      description: this.state.currentTask.description,
-      published: status
-    };
-
-    TaskDataService.update(this.state.currentTask.id, data)
-      .then(response => {
-        this.setState(prevState => ({
-          currentTask: {
-            ...prevState.currentTask,
-            published: status
-          }
-        }));
-        console.log(response.data);
-      })
-      .catch(e => {
-        console.log(e);
-      });
-  }*/
 
   updateTask() {
     TaskDataService.update(

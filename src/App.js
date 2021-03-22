@@ -11,7 +11,7 @@ class App extends Component {
   render() {
     return (
       <div>
-        <nav className="navbar navbar-expand navbar-dark bg-info">
+        <nav className="navbar navbar-expand navbar-dark bg-purple">
           <a href="/tasks" className="navbar-brand">
             KanBan
           </a>

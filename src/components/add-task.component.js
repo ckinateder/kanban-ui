@@ -207,7 +207,7 @@ export default class AddTask extends Component {
             </div>
 
             <button onClick={this.saveTask} className="btn btn-success">
-              Submit
+              Add
             </button>
           </div>
         )}
