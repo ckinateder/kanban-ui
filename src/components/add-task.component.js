@@ -113,7 +113,7 @@ export default class AddTask extends Component {
       <div className="submit-form">
         {this.state.submitted ? (
           <div>
-            <h4>You submitted successfully!</h4>
+            <h4>Task added successfully!</h4>
             <Link
             className="btn btn-dark"
             to={"/"}

@@ -227,13 +227,6 @@ export default class Task extends Component {
                   onChange={this.onChangePoints}
                 />
               </div>
-
-              <div className="form-group">
-                <label>
-                  <strong>Type:</strong>
-                </label>
-                {currentTask.type}
-              </div>
             </form>
             
 
