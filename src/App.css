@@ -22,3 +22,7 @@
 .list-group {
   margin: 10px 0px 10px 0px;
 }
+#del-on-list {
+  margin-left: 10px;
+  border: none;
+}

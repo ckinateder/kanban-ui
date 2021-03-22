@@ -13,6 +13,7 @@ export default class TasksList extends Component {
     this.refreshList = this.refreshList.bind(this);
     this.setActiveTask = this.setActiveTask.bind(this);
     this.removeAllTasks = this.removeAllTasks.bind(this);
+    this.deleteTask = this.deleteTask.bind(this);
 
     this.state = {
       tasks_todo: [],
@@ -88,6 +89,17 @@ export default class TasksList extends Component {
       .then(response => {
         console.log(response.data);
         this.refreshList();
+      })
+      .catch(e => {
+        console.log(e);
+      });
+  }
+
+  deleteTask() {    
+    TaskDataService.delete(this.state.currentTask.id)
+      .then(response => {
+        console.log(response.data);
+        this.refreshList()
       })
       .catch(e => {
         console.log(e);
@@ -217,6 +229,14 @@ export default class TasksList extends Component {
               >
                 Edit
               </Link>
+
+
+              <button
+              className="badge badge-danger" id="del-on-list"
+              onClick={this.deleteTask}
+            >
+              Delete
+            </button>
 
             </div>
           ) : (
