@@ -160,7 +160,7 @@ export default class AddTask extends Component {
   
             <div className="form-group">
             <label htmlFor="description">Type</label>
-            <input
+            <select
                 type="text"
                 className="form-control"
                 id="type"
@@ -168,12 +168,17 @@ export default class AddTask extends Component {
                 value={this.state.type}
                 onChange={this.onChangeType}
                 name="type"
-            />
+            >
+
+                <option value="to do">To Do</option>
+                <option value="in progress">In Progress</option>
+                <option value="done">Done</option>
+            </select>
             </div>
   
             <div className="form-group">
             <label htmlFor="description">Priority</label>
-            <input
+            <select
                 type="text"
                 className="form-control"
                 id="priority"
@@ -181,7 +186,11 @@ export default class AddTask extends Component {
                 value={this.state.priority}
                 onChange={this.onChangePriority}
                 name="priority"
-            />
+            >
+                <option value="low">Low</option>
+                <option value="medium">Medium</option>
+                <option value="high">High</option>
+            </select>
             </div>
 
             <div className="form-group">

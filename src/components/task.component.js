@@ -209,24 +209,35 @@ export default class Task extends Component {
               
               <div className="form-group">
                 <label htmlFor="type">type</label>
-                <input
-                  type="text"
-                  className="form-control"
-                  id="type"
-                  value={currentTask.type}
-                  onChange={this.onChangeType}
-                />
+                <select
+                type="text"
+                className="form-control"
+                id="type"
+                required
+                value={currentTask.type}
+                onChange={this.onChangeType}
+                >
+
+                <option value="to do">To Do</option>
+                <option value="in progress">In Progress</option>
+                <option value="done">Done</option>
+             </select>
               </div>
               
               <div className="form-group">
                 <label htmlFor="priority">priority</label>
-                <input
-                  type="text"
-                  className="form-control"
-                  id="priority"
-                  value={currentTask.priority}
-                  onChange={this.onChangePriority}
-                />
+                <select
+                type="text"
+                className="form-control"
+                id="priority"
+                required
+                value={currentTask.priority}
+                onChange={this.onChangePriority}
+            >
+                <option value="low">Low</option>
+                <option value="medium">Medium</option>
+                <option value="high">High</option>
+            </select>
               </div>
               
               <div className="form-group">
@@ -268,7 +279,7 @@ export default class Task extends Component {
         ) : (
           <div>
             <br />
-            <p>Please click on a Task...</p>
+            <p>Select a task...</p>
           </div>
         )}
       </div>

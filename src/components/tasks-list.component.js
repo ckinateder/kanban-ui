@@ -193,7 +193,7 @@ export default class TasksList extends Component {
           ) : (
             <div>
               <br />
-              <p>Please click on a Task...</p>
+              <p>Select a task...</p>
             </div>
           )}
         </div>
