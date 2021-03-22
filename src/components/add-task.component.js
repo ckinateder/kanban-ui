@@ -8,6 +8,7 @@ export default class AddTask extends Component {
     this.onChangeDescription = this.onChangeDescription.bind(this);
     this.onChangeType = this.onChangeType.bind(this);
     this.onChangePriority = this.onChangePriority.bind(this);
+    this.onChangeUser = this.onChangeUser.bind(this);
     this.saveTask = this.saveTask.bind(this);
     this.newTask = this.newTask.bind(this);
 
@@ -17,6 +18,7 @@ export default class AddTask extends Component {
       description: "", 
       type: "to do",
       priority: "low",
+      user: "root",
 
       submitted: false
     };
@@ -46,12 +48,19 @@ export default class AddTask extends Component {
     });
   }
 
+  onChangeUser(e) {
+    this.setState({
+      user: e.target.value
+    });
+  }
+
   saveTask() {
     var data = {
       title: this.state.title,
       description: this.state.description,
       type: this.state.type,
-      priority: this.state.priority
+      priority: this.state.priority,
+      user: this.state.user
     };
 
     TaskDataService.create(data)
@@ -62,6 +71,7 @@ export default class AddTask extends Component {
           description: response.data.description,
           type: response.data.type,
           priority: response.data.priority,
+          user: response.data.user,
 
           submitted: true
         });
@@ -79,6 +89,7 @@ export default class AddTask extends Component {
       description: "",
       type: "to do",
       priority: "low",
+      user: "root",
 
       submitted: false
     });
@@ -108,6 +119,19 @@ export default class AddTask extends Component {
                 name="title"
               />
             </div>
+  
+            <div className="form-group">
+            <label htmlFor="description">Assign to</label>
+            <input
+                type="text"
+                className="form-control"
+                id="user"
+                required
+                value={this.state.user}
+                onChange={this.onChangeUser}
+                name="user"
+            />
+            </div>
 
             <div className="form-group">
               <label htmlFor="description">Description</label>
@@ -123,7 +147,7 @@ export default class AddTask extends Component {
             </div>
   
             <div className="form-group">
-            <label htmlFor="description">type</label>
+            <label htmlFor="description">Type</label>
             <input
                 type="text"
                 className="form-control"
@@ -136,7 +160,7 @@ export default class AddTask extends Component {
             </div>
   
             <div className="form-group">
-            <label htmlFor="description">priority</label>
+            <label htmlFor="description">Priority</label>
             <input
                 type="text"
                 className="form-control"

@@ -149,6 +149,13 @@ export default class TasksList extends Component {
 
               <div>
                 <label>
+                  <strong>Assign to:</strong>
+                </label>{" "}
+                {currentTask.user}
+              </div>
+
+              <div>
+                <label>
                   <strong>Description:</strong>
                 </label>{" "}
                 {currentTask.description}
@@ -174,7 +181,7 @@ export default class TasksList extends Component {
               >
                 Edit
               </Link>
-              
+
             </div>
           ) : (
             <div>

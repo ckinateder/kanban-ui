@@ -8,6 +8,7 @@ export default class Task extends Component {
     this.onChangeDescription = this.onChangeDescription.bind(this);
     this.onChangeType = this.onChangeType.bind(this);
     this.onChangePriority = this.onChangePriority.bind(this);
+    this.onChangeUser = this.onChangeUser.bind(this);
     this.getTask = this.getTask.bind(this);
     //this.updatePublished = this.updatePublished.bind(this);
     this.updateTask = this.updateTask.bind(this);
@@ -20,6 +21,7 @@ export default class Task extends Component {
         description: "",
         type: "to do",
         priority: "in progress",
+        user: "root"
       },
       message: ""
     };
@@ -71,6 +73,17 @@ export default class Task extends Component {
       currentTask: {
         ...prevState.currentTask,
         priority: priority
+      }
+    }));
+  }
+
+  onChangeUser(e) {
+    const user = e.target.value;
+    
+    this.setState(prevState => ({
+      currentTask: {
+        ...prevState.currentTask,
+        user: user
       }
     }));
   }
@@ -158,6 +171,17 @@ export default class Task extends Component {
                 />
               </div>
               
+              <div className="form-group">
+                <label htmlFor="title">Assign to</label>
+                <input
+                  type="text"
+                  className="form-control"
+                  id="user"
+                  value={currentTask.user}
+                  onChange={this.onChangeUser}
+                />
+              </div>
+
               <div className="form-group">
                 <label htmlFor="description">Description</label>
                 <input
