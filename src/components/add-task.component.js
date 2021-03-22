@@ -101,7 +101,7 @@ export default class AddTask extends Component {
       description: "",
       type: "to do",
       priority: "low",
-      user: "root",
+      user: "",
       points: 1,
 
       submitted: false

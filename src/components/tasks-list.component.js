@@ -22,7 +22,6 @@ export default class TasksList extends Component {
       tasks_done: [],
       currentTask: null,
       currentIndex: -1,
-      currentType: "",
       searchTitle: ""
     };
   }
@@ -85,15 +84,13 @@ export default class TasksList extends Component {
     this.setState({
       currentTask: null,
       currentIndex: -1,
-      currentType: ""
     });
   }
 
-  setActiveTask(task, index, type) {
+  setActiveTask(task, index) {
     this.setState({
       currentTask: task,
       currentIndex: index,
-      currentType: type,
     });
   }
 
@@ -122,7 +119,7 @@ export default class TasksList extends Component {
   }
 
   render() {
-    const { searchTitle, tasks_todo, tasks_inprogress, tasks_done, currentTask, currentIndex, currentType } = this.state;
+    const { searchTitle, tasks_todo, tasks_inprogress, tasks_done, currentTask, currentIndex} = this.state;
 
     return (
       <div className="list row">
@@ -157,7 +154,7 @@ export default class TasksList extends Component {
                     "list-group-item " +
                     ((index === currentIndex && task === currentTask)? "active" : "")
                   }
-                  onClick={() => this.setActiveTask(task, index, task.type)}
+                  onClick={() => this.setActiveTask(task, index)}
                   key={index}
                 >
                   {task.title}
@@ -175,7 +172,7 @@ export default class TasksList extends Component {
                     "list-group-item " +
                     ((index === currentIndex && task === currentTask)? "active" : "")
                   }
-                  onClick={() => this.setActiveTask(task, index, task.type)}
+                  onClick={() => this.setActiveTask(task, index)}
                   key={index}
                 >
                   {task.title}
@@ -193,7 +190,7 @@ export default class TasksList extends Component {
                     "list-group-item " +
                     ((index === currentIndex && task === currentTask)? "active" : "")
                   }
-                  onClick={() => this.setActiveTask(task, index, task.type)}
+                  onClick={() => this.setActiveTask(task, index)}
                   key={index}
                 >
                   {task.title}
