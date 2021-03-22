@@ -1,5 +1,6 @@
 import React, { Component } from "react";
-import TaskDataService from "../services/task.service";
+import TaskDataService from "../services/task.service"
+import { Link } from "react-router-dom";
 
 export default class AddTask extends Component {
   constructor(props) {
@@ -113,8 +114,14 @@ export default class AddTask extends Component {
         {this.state.submitted ? (
           <div>
             <h4>You submitted successfully!</h4>
-            <button className="btn btn-success" onClick={this.newTask}>
-              Add
+            <Link
+            className="btn btn-dark"
+            to={"/"}
+          >
+              Back
+            </Link>
+            <button className="btn btn-primary" onClick={this.newTask}>
+              Add Another
             </button>
           </div>
         ) : (
@@ -206,7 +213,7 @@ export default class AddTask extends Component {
             />
             </div>
 
-            <button onClick={this.saveTask} className="btn btn-success">
+            <button onClick={this.saveTask} className="btn btn-primary">
               Add
             </button>
           </div>

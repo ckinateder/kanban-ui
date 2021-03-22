@@ -207,7 +207,7 @@ export default class TasksList extends Component {
             to={"/add"}
           >
               Add
-              </Link>
+        </Link>
           
         </div>
         <div className="col-md-6">
