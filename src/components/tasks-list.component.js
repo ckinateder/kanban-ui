@@ -71,6 +71,8 @@ export default class TasksList extends Component {
 
   refreshList() {
     this.retrieveToDo();
+    this.retrieveInProgress();
+    this.retrieveDone();
     this.setState({
       currentTask: null,
       currentIndex: -1,
