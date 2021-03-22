@@ -9,6 +9,8 @@ export default class Task extends Component {
     this.onChangeType = this.onChangeType.bind(this);
     this.onChangePriority = this.onChangePriority.bind(this);
     this.onChangeUser = this.onChangeUser.bind(this);
+    this.onChangePoints = this.onChangePoints.bind(this);
+
     this.getTask = this.getTask.bind(this);
     //this.updatePublished = this.updatePublished.bind(this);
     this.updateTask = this.updateTask.bind(this);
@@ -21,7 +23,8 @@ export default class Task extends Component {
         description: "",
         type: "to do",
         priority: "in progress",
-        user: "root"
+        user: "root",
+        points: 1,
       },
       message: ""
     };
@@ -84,6 +87,17 @@ export default class Task extends Component {
       currentTask: {
         ...prevState.currentTask,
         user: user
+      }
+    }));
+  }
+
+  onChangePoints(e) {
+    const points = e.target.value;
+    
+    this.setState(prevState => ({
+      currentTask: {
+        ...prevState.currentTask,
+        points: points
       }
     }));
   }
@@ -212,6 +226,17 @@ export default class Task extends Component {
                   id="priority"
                   value={currentTask.priority}
                   onChange={this.onChangePriority}
+                />
+              </div>
+              
+              <div className="form-group">
+                <label htmlFor="points">Story Points</label>
+                <input
+                  type="text"
+                  className="form-control"
+                  id="points"
+                  value={currentTask.points}
+                  onChange={this.onChangePoints}
                 />
               </div>
 

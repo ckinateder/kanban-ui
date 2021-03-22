@@ -175,6 +175,13 @@ export default class TasksList extends Component {
                 {currentTask.priority}
               </div>
 
+              <div>
+                <label>
+                  <strong>Story Points:</strong>
+                </label>{" "}
+                {currentTask.points}
+              </div>
+
               <Link
                 to={"/tasks/" + currentTask.id}
                 className="badge badge-warning"

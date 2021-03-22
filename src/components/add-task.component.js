@@ -9,6 +9,8 @@ export default class AddTask extends Component {
     this.onChangeType = this.onChangeType.bind(this);
     this.onChangePriority = this.onChangePriority.bind(this);
     this.onChangeUser = this.onChangeUser.bind(this);
+    this.onChangePoints = this.onChangePoints.bind(this);
+
     this.saveTask = this.saveTask.bind(this);
     this.newTask = this.newTask.bind(this);
 
@@ -16,9 +18,10 @@ export default class AddTask extends Component {
       id: null,
       title: "",
       description: "", 
-      type: "to do",
-      priority: "low",
-      user: "root",
+      type: "",
+      priority: "",
+      user: "",
+      points: 1,
 
       submitted: false
     };
@@ -54,13 +57,20 @@ export default class AddTask extends Component {
     });
   }
 
+  onChangePoints(e) {
+    this.setState({
+      points: e.target.value
+    });
+  }
+
   saveTask() {
     var data = {
       title: this.state.title,
       description: this.state.description,
       type: this.state.type,
       priority: this.state.priority,
-      user: this.state.user
+      user: this.state.user,
+      points: this.state.points
     };
 
     TaskDataService.create(data)
@@ -72,6 +82,7 @@ export default class AddTask extends Component {
           type: response.data.type,
           priority: response.data.priority,
           user: response.data.user,
+          points: response.data.points,
 
           submitted: true
         });
@@ -90,6 +101,7 @@ export default class AddTask extends Component {
       type: "to do",
       priority: "low",
       user: "root",
+      points: 1,
 
       submitted: false
     });
@@ -169,6 +181,19 @@ export default class AddTask extends Component {
                 value={this.state.priority}
                 onChange={this.onChangePriority}
                 name="priority"
+            />
+            </div>
+
+            <div className="form-group">
+            <label htmlFor="description">Story Points</label>
+            <input
+                type="text"
+                className="form-control"
+                id="points"
+                required
+                value={this.state.points}
+                onChange={this.onChangePoints}
+                name="points"
             />
             </div>
 
