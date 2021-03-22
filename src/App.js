@@ -13,7 +13,7 @@ class App extends Component {
       <div>
         <nav className="navbar navbar-expand navbar-dark bg-purple">
           <a href="/tasks" className="navbar-brand">
-            KanBan
+            Kanban
           </a>
           <div className="navbar-nav mr-auto">
             <li className="nav-item">
