@@ -32,8 +32,6 @@ class App extends Component {
             <a class="text-white" href="https://ckinateder.github.io/"> Calvin Kinateder</a>
           </div>
         </nav>
-        
-
         <div className="container mt-3">
           <Switch>
             <Route exact path={["/", "/tasks"]} component={TasksList} />
