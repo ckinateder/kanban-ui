@@ -166,8 +166,11 @@ export default class TasksList extends Component {
                   key={index}
                 >
                   {task.title}
+                  
                 </li>
+                
               ))}
+              
           </ul>
           </div>
         <div className="col-md-3">
@@ -194,6 +197,7 @@ export default class TasksList extends Component {
                   key={index}
                 >
                   {task.title}
+                  
                 </li>
               ))}
           </ul>

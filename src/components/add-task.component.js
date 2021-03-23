@@ -212,6 +212,12 @@ export default class AddTask extends Component {
                 name="points"
             />
             </div>
+            <Link
+            className="btn btn-dark"
+            to={"/"}
+          >
+              Back
+            </Link>
 
             <button onClick={this.saveTask} className="btn btn-primary">
               Add
