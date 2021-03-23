@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
 import TaskDataService from "../services/task.service";
 
 export default class Task extends Component {
@@ -229,6 +230,13 @@ export default class Task extends Component {
               </div>
             </form>
             
+            <a href="/">
+            <button
+              type="submit"
+              className="badge badge-dark mr-2"
+            >
+              Back
+            </button></a>
 
             <button
               className="badge badge-danger mr-2"

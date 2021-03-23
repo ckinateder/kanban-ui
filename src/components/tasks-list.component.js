@@ -221,13 +221,14 @@ export default class TasksList extends Component {
                 </label>{" "}
                 {currentTask.user}
               </div>
-
+              {currentTask.description &&
               <div>
                 <label>
                   <strong>Description:</strong>
                 </label>{" "}
                 {currentTask.description}
               </div>
+              }
 
               <div>
                 <label>
@@ -248,6 +249,20 @@ export default class TasksList extends Component {
                   <strong>Story Points:</strong>
                 </label>{" "}
                 {currentTask.points}
+              </div>
+
+              <div>
+                <label>
+                  <strong>Updated:</strong>
+                </label>{" "}
+                {currentTask.updatedAt.replace(/T/, ' ').replace(/\..+/, '')}
+              </div>
+
+              <div>
+                <label>
+                  <strong>Created:</strong>
+                </label>{" "}
+                {currentTask.createdAt.replace(/T/, ' ').replace(/\..+/, '')}
               </div>
 
               <Link
