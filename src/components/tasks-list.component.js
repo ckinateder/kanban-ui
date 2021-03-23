@@ -84,7 +84,7 @@ export default class TasksList extends Component {
       currentTask: task,
       currentIndex: index,
     });
-  }
+  }  
 
   removeAllTasks() {
     TaskDataService.deleteAll()
@@ -231,7 +231,6 @@ export default class TasksList extends Component {
               >
                 Edit
               </Link>
-
 
               <button
               className="badge badge-danger" id="del-on-list"
