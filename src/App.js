@@ -27,7 +27,12 @@ class App extends Component {
               </Link>
             </li>
           </div>
+          <div class="me text-white">
+          Built by
+            <a class="text-white" href="https://ckinateder.github.io/"> Calvin Kinateder</a>
+          </div>
         </nav>
+        
 
         <div className="container mt-3">
           <Switch>
@@ -37,6 +42,7 @@ class App extends Component {
           </Switch>
         </div>
       </div>
+      
     );
   }
 }

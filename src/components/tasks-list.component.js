@@ -114,8 +114,16 @@ export default class TasksList extends Component {
     return (
       <div className="list row">
           
-        <div className="col-md-6">
-          <h4>To Do</h4>
+        <div className="col-md-3">
+          <div className="d-flex justify-content-between align-items-center">            
+            <h4>To Do</h4>
+            <Link
+                className="btn-sm btn-secondary"
+                to={"/add"}
+              >
+                  +
+            </Link>
+          </div>
 
           <ul className="list-group">
             {tasks_todo &&
@@ -132,8 +140,19 @@ export default class TasksList extends Component {
                 </li>
                 
               ))}
-          </ul>
-          <h4>In progress</h4>
+          </ul></div>
+
+        <div className="col-md-3">
+
+          <div className="d-flex justify-content-between align-items-center">            
+            <h4>In Progress</h4>
+            <Link
+                className="btn-sm btn-secondary"
+                to={"/add"}
+              >
+                  +
+            </Link>
+          </div>
 
           <ul className="list-group">
             {tasks_inprogress &&
@@ -150,8 +169,18 @@ export default class TasksList extends Component {
                 </li>
               ))}
           </ul>
-          
-          <h4>Done</h4>
+          </div>
+        <div className="col-md-3">
+
+          <div className="d-flex justify-content-between align-items-center">            
+            <h4>Done</h4>
+            <Link
+                className="btn-sm btn-secondary"
+                to={"/add"}
+              >
+                  +
+            </Link>
+          </div>
 
           <ul className="list-group">
             {tasks_done &&
@@ -168,17 +197,9 @@ export default class TasksList extends Component {
                 </li>
               ))}
           </ul>
-
-                
-          <Link
-            className="m-3 btn btn-sm btn-primary"
-            to={"/add"}
-          >
-              Add
-        </Link>
           
         </div>
-        <div className="col-md-6">
+        <div className="col-md-3">
           {currentTask ? (
             <div>
               <h4>Task</h4>
